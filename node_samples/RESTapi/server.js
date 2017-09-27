@@ -15,6 +15,7 @@ var sess;
 app.get('/',function(req,res){
     sess = req.session;
 //Session set when user Request our app via URL
+    console.log (sess.email)
     if(sess.email) {
         /*
         * This line check Session existence.
@@ -57,5 +58,5 @@ app.get('/logout',function(req,res){
 
 });
 app.listen(3000,function(){
-    console.log("App Started on PORT 3000");
+    console.log("App Started on PORT 3001");
 });
