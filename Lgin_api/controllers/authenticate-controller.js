@@ -1,10 +1,10 @@
 var connection = require('/home/system/WebstormProjects/Lgin_api/config.js');
 var jwt    = require('jsonwebtoken');
 module.exports.authenticate=function(req,res){
-    var token="";
+
     var email=req.body.email;
     var password=req.body.password;
-    console.log()
+
     connection.query("SELECT * FROM users WHERE email = '"+email+"'", function (error, results, fields) {
         if (error) {
             console.log(error)
@@ -15,11 +15,15 @@ module.exports.authenticate=function(req,res){
         }else{
             if(results.length >0){
                 if(password==results[0].password){
-
+                    var user={
+                        name:email,
+                        password:password
+                    }
+                    var token=jwt.sign(user,"very very secret",{expiresIn:4000})
                     res.json({
                         status:true,
                         message:'successfully authenticated'
-                      token=jwt.sign()
+
                     })
                 }else{
                     res.json({

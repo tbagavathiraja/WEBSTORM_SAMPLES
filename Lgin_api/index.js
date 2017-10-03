@@ -56,7 +56,8 @@ app.get('/api/protected', ensureToken, function(req, res) {
             res.sendStatus(403);
         } else {
             res.json({
-                description: 'Protected information. Congrats!'
+                description: 'Protected information. Congrats!',
+                message:data
             });
         }
     });
